@@ -15,16 +15,12 @@ describe 'Print words one to one million' do
 		expect(returns_word_number(10)).to eq 'ten'
 	end
 
-	it 'prints "eleven" for 11' do
-		expect(returns_word_number(2)).to eq 'eleven'
-	end
-
-	xit 'prints "twenty" for 20' do
-		expect(returns_word_number(2)).to eq 'two'
+	it 'prints "twenty one" for 20' do
+		expect(returns_word_number(21)).to eq 'twenty one'
 	end
 
 	xit 'prints "one hunded" for 100' do
-		expect(returns_word_number(2)).to eq 'two'
+		expect(returns_word_number(100)).to eq 'one hundred'
 	end
 
 end
