@@ -35,7 +35,10 @@ NUMBER_TO_WORDS={
 def returns_word_number(number)
 	if number.between?(20, 100)
 		twenty_to_onehundred(number)
-	else
+	elsif
+		number.between?(100, 1000)
+		one_hundred_to_one_thousand(number)
+	else	
 		NUMBER_TO_WORDS[number]
 	end
 end
@@ -47,4 +50,16 @@ def twenty_to_onehundred(number)
 	differenceword = NUMBER_TO_WORDS[difference]
 	roundedword + ' ' + differenceword
 end
+
+def one_hundred_to_one_thousand(number)
+	rounded = number.round(-1)
+	difference = number - rounded 
+	roundedword = NUMBER_TO_WORDS[rounded]
+	differenceword = NUMBER_TO_WORDS[difference]
+	roundedword + ' ' + 'and' + ' ' + differenceword
+end
+
+
+
+
 
