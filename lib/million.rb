@@ -44,22 +44,27 @@ def returns_word_number(number)
 end
 
 def twenty_to_onehundred(number)
-	rounded = number.round(-1)
-	difference = number - rounded 
-	roundedword = NUMBER_TO_WORDS[rounded]
-	differenceword = NUMBER_TO_WORDS[difference]
-	roundedword + ' ' + differenceword
+	get_rounded_word(number) + ' ' + get_difference_word(number)
 end
 
 def one_hundred_to_one_thousand(number)
-	rounded = number.round(-1)
-	difference = number - rounded 
-	roundedword = NUMBER_TO_WORDS[rounded]
-	differenceword = NUMBER_TO_WORDS[difference]
-	roundedword + ' ' + 'and' + ' ' + differenceword
+	get_rounded_word(number) + ' ' + 'and' + ' ' + get_difference_word(number)
 end
 
+def rounded(number)
+	number.round(-1)
+end
 
+def get_rounded_word(number)
+	rounded = rounded(number)
+	roundedword = NUMBER_TO_WORDS[rounded]
+end
+
+def get_difference_word(number)
+	rounded = rounded(number)
+	difference = number - rounded 
+	differenceword = NUMBER_TO_WORDS[difference]
+end
 
 
 
