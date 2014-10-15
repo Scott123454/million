@@ -38,10 +38,23 @@ def returns_word_number(number)
 	elsif
 		number.between?(100, 1000)
 		one_hundred_to_one_thousand(number)
-	else	
+	elsif
+		number.between?(1000, 10000)
+		one_thousand_to_ten_thousand(number)
+	else
 		NUMBER_TO_WORDS[number]
 	end
 end
+
+def hundreds(number)
+	number_of_hundreds = (number/100).round
+end
+
+def format(number)
+	hundreds(number)
+	NUMBER_TO_WORDS[number]
+end
+
 
 def twenty_to_onehundred(number)
 	get_rounded_word(number) + ' ' + get_difference_word(number)
@@ -51,9 +64,21 @@ def one_hundred_to_one_thousand(number)
 	get_rounded_word(number) + ' ' + 'and' + ' ' + get_difference_word(number)
 end
 
+def one_thousand_to_ten_thousand(number)
+
+	puts 'XXXXXX'
+	get_rounded_word(number) 
+end
+
+def one_thousand_to_one_hundred_thousand(number)
+	get_rounded_word(number) + ' ' + 'and' + ' ' + get_difference_word(number)
+end
+
 def rounded(number)
 	number.round(-1)
 end
+
+
 
 def get_rounded_word(number)
 	rounded = rounded(number)
