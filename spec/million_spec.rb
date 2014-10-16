@@ -28,7 +28,11 @@ describe 'Print words one to one million' do
 		expect(returns_word_number(101)).to eq 'one hundred and one'
 	end
 
-	it 'prints "nine hundred and ninety nine" for 999' do
+	it 'prints "one hunded and eleven" for 111' do
+		expect(returns_word_number(111)).to eq 'one hundred and eleven'
+	end
+
+	xit 'prints "nine hundred and ninety nine" for 999' do
 		expect(returns_word_number(999)).to eq 'nine hundred and ninety nine'
 	end	
 		
