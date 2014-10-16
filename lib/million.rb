@@ -46,6 +46,45 @@ def returns_word_number(number)
 	end
 end
 
+
+def twenty_to_onehundred(number)
+	get_rounded_word(number) + ' ' + get_difference_word(number)
+end
+
+def one_hundred_to_one_thousand(number)
+	get_rounded_word(number) + ' ' + 'and' + ' ' + get_difference_word(number)
+end
+
+def one_thousand_to_ten_thousand(number)
+	get_rounded_word(number) 
+end
+
+def one_thousand_to_one_hundred_thousand(number)
+	get_rounded_word(number) + ' ' + 'and' + ' ' + get_difference_word(number)
+end
+
+def rounded(number)
+	if number < 100
+		divide_by_10 = (number / 10) * 10
+	elsif number >= 100
+		divide_by_100 = (number/100) * 100 
+	end
+end
+
+def get_rounded_word(number)
+	rounded = rounded(number)
+	roundedword = NUMBER_TO_WORDS[rounded]
+end
+
+puts get_rounded_word(199)
+
+def get_difference_word(number)
+	rounded = rounded(number)
+	difference = number - rounded 
+	differenceword = NUMBER_TO_WORDS[difference]
+end
+
+
 # def hundreds(number)
 # 	number_of_hundreds = (number/100).round
 # 	number_of_hundreds_word = NUMBER_TO_WORDS[number_of_hundreds]
@@ -70,46 +109,4 @@ end
 # 	hundreds(number)
 
 # end
-
-def twenty_to_onehundred(number)
-	get_rounded_word(number) + ' ' + get_difference_word(number)
-end
-
-def one_hundred_to_one_thousand(number)
-	get_rounded_word(number) + ' ' + 'and' + ' ' + get_difference_word(number)
-end
-
-def one_thousand_to_ten_thousand(number)
-
-	puts 'XXXXXX'
-	get_rounded_word(number) 
-end
-
-def one_thousand_to_one_hundred_thousand(number)
-	get_rounded_word(number) + ' ' + 'and' + ' ' + get_difference_word(number)
-end
-
-def rounded(number)
-	if number < 100
-		number.round(-1)
-	elsif number <= 100
-		number.round(-2)
-	end
-end
-
-puts 111.round(-2)
-
-
-def get_rounded_word(number)
-	rounded = rounded(number)
-	roundedword = NUMBER_TO_WORDS[rounded]
-end
-
-def get_difference_word(number)
-	rounded = rounded(number)
-	difference = number - rounded 
-	differenceword = NUMBER_TO_WORDS[difference]
-end
-
-
 
