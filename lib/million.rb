@@ -52,11 +52,21 @@ def twenty_to_onehundred(number)
 end
 
 def one_hundred_to_one_thousand(number)
-	get_rounded_word(number) + ' ' + 'and' + ' ' + get_difference_word(number)
+	get_rounded_word(number) 
+	+ ' ' + 'hundred' + ' ' + 'and' + ' ' + 
+	
+	get_difference_word(number)
+	
+
+
+	# twenty_to_onehundred
+	# one hundred and ninety nine 
+
 end
 
 def one_thousand_to_ten_thousand(number)
-	get_rounded_word(number) 
+	get_rounded_word(number)
+
 end
 
 def one_thousand_to_one_hundred_thousand(number)
@@ -65,9 +75,11 @@ end
 
 def rounded(number)
 	if number < 100
-		divide_by_10 = (number / 10) * 10
+		(number / 10) * 10
 	elsif number >= 100
-		divide_by_100 = (number/100) * 100 
+		divide_by_a_hundred = (number/100) 
+		difference = number - (divide_by_a_hundred * 100)
+		difference
 	end
 end
 
