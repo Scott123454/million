@@ -52,7 +52,7 @@ def twenty_to_onehundred(number)
 end
 
 def one_hundred_to_one_thousand(number)
-	get_rounded_word(number) + ' ' + 'hundred' + ' ' + 'and' + ' ' + @hundred_difference
+	get_rounded_word(number) + ' ' + 'hundred' + ' ' + 'and' + ' ' + get_difference_word_hundred(number) 
 	# twenty_to_onehundred
 	# one hundred and ninety nine 
 end
@@ -70,9 +70,6 @@ def rounded(number)
 		(number / 10) * 10
 	elsif number >= 100
 		divide_by_a_hundred = (number/100) 
-		difference = number - (divide_by_a_hundred * 100)
-		@hundred_difference = rounded(difference)
-		divide_by_a_hundred
 		# the issus is the difference of say 98 needs to go throught the rounding filter again
 	end
 end
@@ -83,6 +80,24 @@ def get_rounded_word(number)
 end
 
 puts get_rounded_word(199)
+
+def get_difference_word_hundred(number)
+	rounded = rounded(number)
+	difference = number - (rounded * 100)
+	newdifference = rounded(difference)
+	# hundred_difference = rounded(difference)
+	# divide_by_a_hundred
+	# rounded = rounded(number)
+	# difference = number - rounded 
+	differenceword = NUMBER_TO_WORDS[newdifference]
+end
+
+def last_digit(number)
+	rounded = rounded(number)
+	difference = number - (rounded * 100)
+	newdifference = rounded(difference)
+end
+
 
 def get_difference_word(number)
 	rounded = rounded(number)
