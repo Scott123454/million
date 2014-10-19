@@ -97,6 +97,7 @@ end
 
 
 
+
 def get_difference_word(number)
 	rounded = rounded(number)
 	difference = number - rounded 
