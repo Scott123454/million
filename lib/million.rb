@@ -63,7 +63,10 @@ def one_hundred_to_one_thousand(number)
 end
 
 def one_thousand_to_ten_thousand(number)
-	get_rounded_word(number)
+	number_of_thousands = rounded(number)
+	remainder = number_of_thousands * 1000
+	hundreds_number = number - remainder
+	NUMBER_TO_WORDS[number_of_thousands] + ' ' + 'thousand' + ' ' + one_hundred_to_one_thousand(hundreds_number)
 end
 
 def one_thousand_to_one_hundred_thousand(number)
@@ -73,9 +76,10 @@ end
 def rounded(number)
 	if number < 100
 		(number / 10) * 10
-	elsif number >= 100
-		divide_by_a_hundred = (number/100) 
-		# the issus is the difference of say 98 needs to go throught the rounding filter again
+	elsif number.between?(100, 1000)
+		(number/100) 
+	elsif number.between?(1000, 10000)
+		(number/1000)
 	end
 end
 
@@ -83,8 +87,6 @@ def get_rounded_word(number)
 	rounded = rounded(number)
 	roundedword = NUMBER_TO_WORDS[rounded]
 end
-
-puts get_rounded_word(199)
 
 def get_difference_word_hundred(number)
 	rounded = rounded(number)
