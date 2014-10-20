@@ -52,7 +52,12 @@ def twenty_to_onehundred(number)
 end
 
 def one_hundred_to_one_thousand(number)
-	get_rounded_word(number) + ' ' + 'hundred' + ' ' + 'and' + ' ' + get_difference_word_hundred(number) + ' ' + last_digit(number) 
+	last = last_digit(number) 
+	if last_digit(number) == nil
+	    get_rounded_word(number) + ' ' + 'hundred' + ' ' + 'and' + ' ' + get_difference_word_hundred(number)
+	else
+		get_rounded_word(number) + ' ' + 'hundred' + ' ' + 'and' + ' ' + get_difference_word_hundred(number) + ' ' + last_digit(number) 
+	end 
 	# twenty_to_onehundred
 	# one hundred and ninety nine 
 end
@@ -83,20 +88,16 @@ puts get_rounded_word(199)
 
 def get_difference_word_hundred(number)
 	rounded = rounded(number)
-	
 	difference = number - (rounded * 100)
-
 	newdifference = rounded(difference)
+	
+	if newdifference < 21
+		NUMBER_TO_WORDS[difference]
+	else
+		NUMBER_TO_WORDS[newdifference]
+	end
 
-	# hundred_difference = rounded(difference)
-	# divide_by_a_hundred
-	# rounded = rounded(number)
-	# difference = number - rounded 
-	NUMBER_TO_WORDS[newdifference]
 end
-
-
-
 
 def get_difference_word(number)
 	rounded = rounded(number)
@@ -106,34 +107,12 @@ end
 
 def last_digit(number)
 	rounded = rounded(number)
-	difference = number - (rounded * 100)
+	difference = number - (rounded * 100) 
 	newdifference = rounded(difference) 
-	last_digit = difference - newdifference
-	NUMBER_TO_WORDS[last_digit]
+	if newdifference > 21
+		last_digit = difference - newdifference
+		NUMBER_TO_WORDS[last_digit]
+	end
 end
 
-# def hundreds(number)
-# 	number_of_hundreds = (number/100).round
-# 	number_of_hundreds_word = NUMBER_TO_WORDS[number_of_hundreds]
-# 	number_of_hundreds_word + ' ' + 'hundred'
-# end
-
-# def thousands(number)
-# 	number_of_thousands = (number/100).round
-# 	number_of_thousands_word = NUMBER_TO_WORDS[number_of_hundreds]
-# 	number_of_thousands_word + ' ' + 'hundred'
-# end
-
-# def number_tester(number)
-# 	if (number/1000) >= 1
-# 	thousands
-# 	elsif (number /100) >= 1
-# 	hundreds
-# 	end
-# end
-
-# def new(number)
-# 	hundreds(number)
-
-# end
 
