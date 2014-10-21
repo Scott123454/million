@@ -41,11 +41,12 @@ def returns_word_number(number)
 	elsif
 		number.between?(1000, 10000)
 		one_thousand_to_ten_thousand(number)
+	elsif number.between?(10000, 100000)
+		one_thousand_to_ten_thousand(number)
 	else
 		NUMBER_TO_WORDS[number]
 	end
 end
-
 
 def twenty_to_onehundred(number)
 	get_rounded_word(number) + ' ' + get_difference_word(number)
@@ -70,7 +71,10 @@ def one_thousand_to_ten_thousand(number)
 end
 
 def one_thousand_to_one_hundred_thousand(number)
-	get_rounded_word(number) + ' ' + 'and' + ' '  
+	number_of_thousands = rounded(number)
+	remainder = number_of_thousands * 1000
+	hundreds_number = number - remainder
+	NUMBER_TO_WORDS[number_of_thousands] + ' ' + 'thousand' + ' ' + one_hundred_to_one_thousand(hundreds_number)
 end
 
 def rounded(number)
@@ -78,7 +82,7 @@ def rounded(number)
 		(number / 10) * 10
 	elsif number.between?(100, 1000)
 		(number/100) 
-	elsif number.between?(1000, 10000)
+	elsif number.between?(1000, 100000)
 		(number/1000)
 	end
 end
