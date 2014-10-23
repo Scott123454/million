@@ -1,4 +1,4 @@
-million
+One Million
 =======
 
-Print words one to a million
+Print the words one to a million
