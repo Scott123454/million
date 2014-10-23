@@ -32,6 +32,26 @@ NUMBER_TO_WORDS={
 	1000000 => 'one million'
 }
 
+def last_digit(number)
+	rounded = rounded(number)
+	difference = number - (rounded * 100) 
+	newdifference = rounded(difference) 
+	if newdifference > 21
+		last_digit = difference - newdifference
+		NUMBER_TO_WORDS[last_digit]
+	end
+end
+
+def rounded(number)
+	if number < 100
+		(number / 10) * 10
+	elsif number.between?(100, 1000)
+		(number/100) 
+	elsif number.between?(1000, 100000)
+		(number/1000)
+	end
+end
+
 def returns_word_number(number)
 	if number.between?(20, 100)
 		twenty_to_onehundred(number)
@@ -42,7 +62,7 @@ def returns_word_number(number)
 		number.between?(1000, 10000)
 		one_thousand_to_ten_thousand(number)
 	elsif number.between?(10000, 100000)
-		one_thousand_to_ten_thousand(number)
+		one_thousand_to_one_hundred_thousand(number)
 	else
 		NUMBER_TO_WORDS[number]
 	end
@@ -63,6 +83,7 @@ def one_hundred_to_one_thousand(number)
 	# one hundred and ninety nine 
 end
 
+
 def one_thousand_to_ten_thousand(number)
 	number_of_thousands = rounded(number)
 	remainder = number_of_thousands * 1000
@@ -74,18 +95,9 @@ def one_thousand_to_one_hundred_thousand(number)
 	number_of_thousands = rounded(number)
 	remainder = number_of_thousands * 1000
 	hundreds_number = number - remainder
-	NUMBER_TO_WORDS[number_of_thousands] + ' ' + 'thousand' + ' ' + one_hundred_to_one_thousand(hundreds_number)
+	twenty_to_onehundred(number_of_thousands) + ' ' + 'thousand' + ' ' + one_hundred_to_one_thousand(hundreds_number) 
 end
 
-def rounded(number)
-	if number < 100
-		(number / 10) * 10
-	elsif number.between?(100, 1000)
-		(number/100) 
-	elsif number.between?(1000, 100000)
-		(number/1000)
-	end
-end
 
 def get_rounded_word(number)
 	rounded = rounded(number)
@@ -111,14 +123,6 @@ def get_difference_word(number)
 	differenceword = NUMBER_TO_WORDS[difference]
 end
 
-def last_digit(number)
-	rounded = rounded(number)
-	difference = number - (rounded * 100) 
-	newdifference = rounded(difference) 
-	if newdifference > 21
-		last_digit = difference - newdifference
-		NUMBER_TO_WORDS[last_digit]
-	end
-end
 
-
+puts one_thousand_to_one_hundred_thousand(99999)
+# puts one_thousand_to_ten_thousand(9999)

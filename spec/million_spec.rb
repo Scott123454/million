@@ -57,8 +57,8 @@ describe 'Print words one to one million' do
 		expect(returns_word_number(9999)).to eq 'nine thousand nine hundred and ninety nine'
 	end
 
-	it 'prints "ninety nine thousand nine hundered and ninety nine" for 99999' do
-		expect(returns_word_number(99999)).to eq 'ninety nine thousand nine hundered and ninety nine'
+	it 'prints "ninety nine thousand nine hundred and ninety nine" for 99999' do
+		expect(returns_word_number(99999)).to eq 'ninety nine thousand nine hundred and ninety nine'
 	end
 
 end
