@@ -36,6 +36,10 @@ describe 'Print words one to one million' do
 		expect(returns_word_number(111)).to eq 'one hundred and eleven'
 	end
 
+	it 'prints "one hunded and twenty one" for 121' do
+		expect(returns_word_number(121)).to eq 'one hundred and twenty one'
+	end
+
 	it 'prints "one hunded and ninety eight" for 198' do
 		expect(returns_word_number(198)).to eq 'one hundred and ninety eight'
 	end
@@ -73,9 +77,9 @@ describe 'Print words one to one million' do
 		expect(returns_word_number(87569)).to eq 'eighty seven thousand five hundred and sixty nine'
 	end
 
-	it 'prints "nine hundred and ninety nine thousand nine hundred and ninety nine" for 999999' do
-		expect(returns_word_number(999999)).to eq 'nine hundred and ninety nine thousand nine hundred and ninety nine'
-	end
+	# it 'prints "nine hundred and ninety nine thousand nine hundred and ninety nine" for 999999' do
+	# 	expect(returns_word_number(999999)).to eq 'nine hundred and ninety nine thousand nine hundred and ninety nine'
+	# end
 
 	# it 'prints "three hundred and twenty six thousand nine hundred and ninety four" for 326994' do
 	# 	expect(returns_word_number(326994)).to eq 'three hundred and twenty six thousand nine hundred and ninety four'
