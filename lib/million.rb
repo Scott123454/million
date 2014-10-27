@@ -1,3 +1,4 @@
+
 NUMBER_TO_WORDS={
 	1 => 'one',
 	2 => 'two',
@@ -32,113 +33,119 @@ NUMBER_TO_WORDS={
 	1000000 => 'one million'
 }
 
-def last_digit(number)
-	rounded = rounded(number) 
-	difference = number - (rounded * 100)    
-	newdifference = rounded(difference)  
-	last_digit = difference - newdifference  
-	if difference > 20s
-		if last_digit > 0
-			NUMBER_TO_WORDS[last_digit]
+class Yo
+
+	def last_digit(number)
+		rounded = rounded(number) 
+		difference = number - (rounded * 100)    
+		newdifference = rounded(difference)  
+		last_digit = difference - newdifference  
+		if difference > 20
+			if last_digit > 0
+				NUMBER_TO_WORDS[last_digit]
+			end
 		end
 	end
-end
 
-def rounded(number)
-	if number < 100
-		(number / 10) * 10
-	elsif number.between?(100, 1000)
-		(number/100) 
-	elsif number.between?(1000, 100000)
-		(number/1000)
-	elsif number.between?(10000, 1000000)
-		(number/1000)
-	end
-end
-
-def returns_word_number(number)
-	if number.between?(20, 100)
-		twenty_to_onehundred(number)
-	elsif
-		number.between?(100, 1000)
-		one_hundred_to_one_thousand(number)
-	elsif
-		number.between?(1000, 10000)
-		one_thousand_to_ten_thousand(number)
-	elsif number.between?(10000, 100000)
-		one_thousand_to_one_hundred_thousand(number)
-	elsif number.between?(100000, 1000000)
-		one_hundred_thousand_to_one_million(number)
-	else
-		NUMBER_TO_WORDS[number]
-	end
-end
-
-def twenty_to_onehundred(number)
-	get_rounded_word(number) + ' ' + get_difference_word(number)
-end
-
-def one_hundred_to_one_thousand(number)
-	last = last_digit(number) 
-	if last_digit(number) == nil
-	    get_rounded_word(number) + ' ' + 'hundred' + ' ' + 'and' + ' ' + get_difference_word_hundred(number)
-	    # + get_difference_word_hundred(number)
-	else
-		get_rounded_word(number) + ' ' + 'hundred' + ' ' + 'and' + ' ' + get_difference_word_hundred(number) + ' ' + last_digit(number) 
-	end 
-	# twenty_to_onehundred
-	# one hundred and ninety nine 
-end
-
-puts last_digit(101)
-puts last_digit(111)
-
-def one_thousand_to_ten_thousand(number)
-	number_of_thousands = rounded(number)
-	remainder = number_of_thousands * 1000
-	hundreds_number = number - remainder
-	NUMBER_TO_WORDS[number_of_thousands] + ' ' + 'thousand' + ' ' + one_hundred_to_one_thousand(hundreds_number)
-end
-
-def one_thousand_to_one_hundred_thousand(number)
-	number_of_thousands = rounded(number)
-	remainder = number_of_thousands * 1000
-	hundreds_number = number - remainder
-	twenty_to_onehundred(number_of_thousands) + ' ' + 'thousand' + ' ' + one_hundred_to_one_thousand(hundreds_number) 
-end
-
-def one_hundred_thousand_to_one_million(number)
-	number_of_thousands = rounded(number)
-	puts number_of_thousands
-	remainder = number_of_thousands * 1000
-	puts remainder
-	hundreds_number = number - remainder
-	puts hundreds_number
-	one_hundred_to_one_thousand(number_of_thousands) 
-	# + ' ' + 'thousand' + ' ' + one_hundred_to_one_thousand(hundreds_number) 
-end
-
-def get_rounded_word(number)
-	rounded = rounded(number)
-	roundedword = NUMBER_TO_WORDS[rounded]
-end
-
-def get_difference_word_hundred(number)
-	rounded = rounded(number) 
-	difference = number - (rounded * 100) 
-	newdifference = rounded(difference) 
-	if difference < 21
-		NUMBER_TO_WORDS[difference]
-	else
-		NUMBER_TO_WORDS[newdifference]
+	def rounded(number)
+		if number < 100
+			(number / 10) * 10
+		elsif number.between?(100, 1000)
+			(number/100) 
+		elsif number.between?(1000, 100000)
+			(number/1000)
+		elsif number.between?(10000, 1000000)
+			(number/1000)
+		end
 	end
 
+	def run(number)
+		i = 0
+		num = 1000001
+
+	    while i < num  do
+		   	puts returns_word_number(i)
+		   	i +=1
+		end
+
+	end
+
+	def returns_word_number(number)
+		if number.between?(21, 100)
+			twenty_to_onehundred(number)
+		elsif
+			number.between?(100, 1000)
+			one_hundred_to_one_thousand(number)
+		elsif
+			number.between?(1000, 10000)
+			one_thousand_to_ten_thousand(number)
+		elsif number.between?(10000, 100000)
+			one_thousand_to_one_hundred_thousand(number)
+		elsif number.between?(100000, 1000000)
+			one_hundred_thousand_to_one_million(number)
+		else
+			NUMBER_TO_WORDS[number]
+		end
+	end
+
+	def twenty_to_onehundred(number)
+		get_rounded_word(number) + ' ' + get_difference_word(number)
+	end
+
+	def one_hundred_to_one_thousand(number)
+		last = last_digit(number) 
+		if last_digit(number) == nil
+		    get_rounded_word(number) + ' ' + 'hundred' + ' ' + 'and' + ' ' + get_difference_word_hundred(number)
+		else
+			get_rounded_word(number) + ' ' + 'hundred' + ' ' + 'and' + ' ' + get_difference_word_hundred(number) + ' ' + last_digit(number) 
+		end 
+	end
+
+	def one_thousand_to_ten_thousand(number)
+		number_of_thousands = rounded(number)
+		remainder = number_of_thousands * 1000
+		hundreds_number = number - remainder
+		NUMBER_TO_WORDS[number_of_thousands] + ' ' + 'thousand' + ' ' + one_hundred_to_one_thousand(hundreds_number)
+	end
+
+	def one_thousand_to_one_hundred_thousand(number)
+		number_of_thousands = rounded(number)
+		remainder = number_of_thousands * 1000
+		hundreds_number = number - remainder
+		twenty_to_onehundred(number_of_thousands) + ' ' + 'thousand' + ' ' + one_hundred_to_one_thousand(hundreds_number) 
+	end
+
+	def one_hundred_thousand_to_one_million(number)
+		number_of_thousands = rounded(number)
+		puts number_of_thousands
+		remainder = number_of_thousands * 1000
+		puts remainder
+		hundreds_number = number - remainder
+		puts hundreds_number
+		one_hundred_to_one_thousand(number_of_thousands) 
+	end
+
+	def get_rounded_word(number)
+		rounded = rounded(number)
+		roundedword = NUMBER_TO_WORDS[rounded]
+	end
+
+	def get_difference_word_hundred(number)
+		rounded = rounded(number) 
+		difference = number - (rounded * 100) 
+		newdifference = rounded(difference) 
+		if difference < 21
+			NUMBER_TO_WORDS[difference]
+		else
+			NUMBER_TO_WORDS[newdifference]
+		end
+
+	end
+
+	def get_difference_word(number)
+		rounded = rounded(number)
+		difference = number - rounded 
+		differenceword = NUMBER_TO_WORDS[difference]
+	end
+
 end
-
-def get_difference_word(number)
-	rounded = rounded(number)
-	difference = number - rounded 
-	differenceword = NUMBER_TO_WORDS[difference]
-end
-
-
