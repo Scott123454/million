@@ -13,7 +13,7 @@ NUMBER_TO_WORDS={
 	12 => 'twelve',
 	13 => 'thirteen',
 	14 => 'fourteen',
-	15 => 'fifthteen',
+	15 => 'fifteen',
 	16 => 'sixteen',
 	17 => 'seventeen',
 	18 => 'eighteen',
@@ -34,11 +34,13 @@ NUMBER_TO_WORDS={
 
 def last_digit(number)
 	rounded = rounded(number) 
-	difference = number - (rounded * 100)   
-	newdifference = rounded(difference) 
+	difference = number - (rounded * 100)    
+	newdifference = rounded(difference)  
 	last_digit = difference - newdifference  
-	if last_digit > 0
-		NUMBER_TO_WORDS[last_digit]
+	if difference > 20s
+		if last_digit > 0
+			NUMBER_TO_WORDS[last_digit]
+		end
 	end
 end
 
@@ -124,16 +126,7 @@ end
 def get_difference_word_hundred(number)
 	rounded = rounded(number) 
 	difference = number - (rounded * 100) 
-	newdifference = rounded(difference)
-	
-	puts difference
-	puts newdifference
-
-	# 326 => 20
-	# 999 => 90
-	# 957 => 50
-
-		
+	newdifference = rounded(difference) 
 	if difference < 21
 		NUMBER_TO_WORDS[difference]
 	else
@@ -142,23 +135,10 @@ def get_difference_word_hundred(number)
 
 end
 
-# puts get_difference_word_hundred(326)
-puts one_hundred_to_one_thousand(326)
-# puts last_digit(326)
-# puts last_digit(999)
-# puts last_digit(101)
-# puts last_digit(888)
-# puts last_digit(333)
-
-
-
 def get_difference_word(number)
 	rounded = rounded(number)
 	difference = number - rounded 
 	differenceword = NUMBER_TO_WORDS[difference]
 end
 
-# puts get_difference_word_hundred(326)
-# puts one_hundred_to_one_thousand(346)
-# puts one_hundred_thousand_to_one_million(326994)
-# puts one_thousand_to_ten_thousand(9999)
+
