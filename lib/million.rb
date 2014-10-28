@@ -89,7 +89,12 @@ class Yo
 	end
 
 	def twenty_to_onehundred(number)
-		get_rounded_word(number) + ' ' + get_difference_word(number)
+		difference = get_difference_word(number)
+		if difference == nil
+			get_rounded_word(number) 
+		else
+			get_rounded_word(number) + ' ' + get_difference_word(number)
+		end
 	end
 
 	def one_hundred_to_one_thousand(number)
@@ -145,7 +150,9 @@ class Yo
 	def get_difference_word(number)
 		rounded = rounded(number)
 		difference = number - rounded 
-		differenceword = NUMBER_TO_WORDS[difference]
+		if difference > 0
+			differenceword = NUMBER_TO_WORDS[difference]
+		end
 	end
 
 end
