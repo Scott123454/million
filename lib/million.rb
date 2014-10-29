@@ -74,10 +74,10 @@ class Yo
 		if number.between?(21, 100)
 			twenty_to_onehundred(number)
 		elsif
-			number.between?(100, 1000)
+			number.between?(100, 999)
 			one_hundred_to_one_thousand(number)
 		elsif
-			number.between?(1000, 10000)
+			number.between?(999, 10000)
 			one_thousand_to_ten_thousand(number)
 		elsif number.between?(10000, 100000)
 			one_thousand_to_one_hundred_thousand(number)
@@ -98,11 +98,16 @@ class Yo
 	end
 
 	def one_hundred_to_one_thousand(number)
-		last = last_digit(number) 
-		if last_digit(number) == nil
-		    get_rounded_word(number) + ' ' + 'hundred' + ' ' + 'and' + ' ' + get_difference_word_hundred(number)
+		last = last_digit(number)
+		difference = get_difference_word_hundred(number)
+		if difference == nil
+			get_rounded_word(number) + ' ' + 'hundred'
 		else
-			get_rounded_word(number) + ' ' + 'hundred' + ' ' + 'and' + ' ' + get_difference_word_hundred(number) + ' ' + last_digit(number) 
+			if last == nil
+			    get_rounded_word(number) + ' ' + 'hundred' + ' ' + 'and' + ' ' + get_difference_word_hundred(number)
+			else
+				get_rounded_word(number) + ' ' + 'hundred' + ' ' + 'and' + ' ' + get_difference_word_hundred(number) + ' ' + last_digit(number) 
+			end
 		end 
 	end
 
@@ -110,7 +115,11 @@ class Yo
 		number_of_thousands = rounded(number)
 		remainder = number_of_thousands * 1000
 		hundreds_number = number - remainder
-		NUMBER_TO_WORDS[number_of_thousands] + ' ' + 'thousand' + ' ' + one_hundred_to_one_thousand(hundreds_number)
+		if hundreds_number == 0
+			NUMBER_TO_WORDS[number_of_thousands] + ' ' + 'thousand'
+		else
+			NUMBER_TO_WORDS[number_of_thousands] + ' ' + 'thousand' + ' ' + one_hundred_to_one_thousand(hundreds_number)
+		end
 	end
 
 	def one_thousand_to_one_hundred_thousand(number)
