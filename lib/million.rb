@@ -50,9 +50,9 @@ class Yo
 	def rounded(number)
 		if number < 100
 			(number / 10) * 10
-		elsif number.between?(100, 1000)
+		elsif number.between?(100, 999)
 			(number/100) 
-		elsif number.between?(1000, 100000)
+		elsif number.between?(999, 100000)
 			(number/1000)
 		elsif number.between?(10000, 1000000)
 			(number/1000)
@@ -112,10 +112,13 @@ class Yo
 	end
 
 	def one_thousand_to_ten_thousand(number)
+		puts number
 		number_of_thousands = rounded(number)
+		puts number_of_thousands
 		remainder = number_of_thousands * 1000
 		hundreds_number = number - remainder
 		if hundreds_number == 0
+			puts hundreds_number
 			NUMBER_TO_WORDS[number_of_thousands] + ' ' + 'thousand'
 		else
 			NUMBER_TO_WORDS[number_of_thousands] + ' ' + 'thousand' + ' ' + one_hundred_to_one_thousand(hundreds_number)

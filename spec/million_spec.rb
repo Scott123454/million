@@ -89,13 +89,13 @@ describe 'Print words one to one million' do
 		expect(Yo.new.returns_word_number(87569)).to eq 'eighty seven thousand five hundred and sixty nine'
 	end
 
-	# it 'prints "nine hundred and ninety nine thousand nine hundred and ninety nine" for 999999' do
-	# 	expect(returns_word_number(999999)).to eq 'nine hundred and ninety nine thousand nine hundred and ninety nine'
-	# end
+	it 'prints "nine hundred and ninety nine thousand nine hundred and ninety nine" for 999999' do
+		expect(Yo.new.returns_word_number(999999)).to eq 'nine hundred and ninety nine thousand nine hundred and ninety nine'
+	end
 
-	# it 'prints "three hundred and twenty six thousand nine hundred and ninety four" for 326994' do
-	# 	expect(returns_word_number(326994)).to eq 'three hundred and twenty six thousand nine hundred and ninety four'
-	# end
+	it 'prints "three hundred and twenty six thousand nine hundred and ninety four" for 326994' do
+		expect(Yo.new.returns_word_number(326994)).to eq 'three hundred and twenty six thousand nine hundred and ninety four'
+	end
 
 
 end
