@@ -52,9 +52,7 @@ class Yo
 			(number / 10) * 10
 		elsif number.between?(100, 999)
 			(number/100) 
-		elsif number.between?(999, 100000)
-			(number/1000)
-		elsif number.between?(9999, 1000000)
+		elsif number.between?(999, 1000000)
 			(number/1000)
 		end
 	end
@@ -79,7 +77,7 @@ class Yo
 		elsif
 			number.between?(999, 9999)
 			one_thousand_to_ten_thousand(number)
-		elsif number.between?(9999, 100000)
+		elsif number.between?(10000, 100000)
 			one_thousand_to_one_hundred_thousand(number)
 		elsif number.between?(100000, 1000000)
 			one_hundred_thousand_to_one_million(number)
