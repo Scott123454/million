@@ -54,7 +54,7 @@ class Yo
 			(number/100) 
 		elsif number.between?(999, 100000)
 			(number/1000)
-		elsif number.between?(10000, 1000000)
+		elsif number.between?(9999, 1000000)
 			(number/1000)
 		end
 	end
@@ -77,9 +77,9 @@ class Yo
 			number.between?(100, 999)
 			one_hundred_to_one_thousand(number)
 		elsif
-			number.between?(999, 10000)
+			number.between?(999, 9999)
 			one_thousand_to_ten_thousand(number)
-		elsif number.between?(10000, 100000)
+		elsif number.between?(9999, 100000)
 			one_thousand_to_one_hundred_thousand(number)
 		elsif number.between?(100000, 1000000)
 			one_hundred_thousand_to_one_million(number)
@@ -99,7 +99,9 @@ class Yo
 
 	def one_hundred_to_one_thousand(number)
 		last = last_digit(number)
+		# puts last
 		difference = get_difference_word_hundred(number)
+		# puts difference
 		if difference == nil
 			get_rounded_word(number) + ' ' + 'hundred'
 		else
@@ -112,14 +114,19 @@ class Yo
 	end
 
 	def one_thousand_to_ten_thousand(number)
-		puts number
+		# 1021
 		number_of_thousands = rounded(number)
-		puts number_of_thousands
+		# 1
 		remainder = number_of_thousands * 1000
+		# 1000
 		hundreds_number = number - remainder
+		# 21
 		if hundreds_number == 0
-			puts hundreds_number
 			NUMBER_TO_WORDS[number_of_thousands] + ' ' + 'thousand'
+		elsif hundreds_number.between?(0, 20) 
+			NUMBER_TO_WORDS[number_of_thousands] + ' ' + 'thousand' + ' ' + 'and' + ' ' + NUMBER_TO_WORDS[hundreds_number]
+		elsif hundreds_number.between?(21, 100) 
+			NUMBER_TO_WORDS[number_of_thousands] + ' ' + 'thousand' + ' ' + 'and' + ' ' + twenty_to_onehundred(hundreds_number)
 		else
 			NUMBER_TO_WORDS[number_of_thousands] + ' ' + 'thousand' + ' ' + one_hundred_to_one_thousand(hundreds_number)
 		end
@@ -133,13 +140,19 @@ class Yo
 	end
 
 	def one_hundred_thousand_to_one_million(number)
+		# 999999
 		number_of_thousands = rounded(number)
+		# 999
 		puts number_of_thousands
 		remainder = number_of_thousands * 1000
 		puts remainder
+		# 999000
 		hundreds_number = number - remainder
+		# 999
 		puts hundreds_number
-		one_hundred_to_one_thousand(number_of_thousands) 
+		one_hundred_to_one_thousand(number_of_thousands) + ' ' + 'thousand' + ' ' + one_hundred_to_one_thousand(hundreds_number)
+		# nine hundred and ninety nine 
+
 	end
 
 	def get_rounded_word(number)
@@ -148,9 +161,13 @@ class Yo
 	end
 
 	def get_difference_word_hundred(number)
+		# 111
 		rounded = rounded(number) 
+		# 1
 		difference = number - (rounded * 100) 
+		# 111 - 100 = 11
 		newdifference = rounded(difference) 
+		#1
 		if difference < 21
 			NUMBER_TO_WORDS[difference]
 		else
@@ -160,8 +177,11 @@ class Yo
 	end
 
 	def get_difference_word(number)
+		# 101
 		rounded = rounded(number)
-		difference = number - rounded 
+		# 1
+		difference = number - rounded
+		# 1 
 		if difference > 0
 			differenceword = NUMBER_TO_WORDS[difference]
 		end
