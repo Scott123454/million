@@ -1,4 +1,3 @@
-
 NUMBER_TO_WORDS={
 	1 => 'one',
 	2 => 'two',
