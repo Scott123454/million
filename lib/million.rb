@@ -70,11 +70,9 @@ class Yo
 	def returns_word_number(number)
 		if number.between?(21, 100)
 			twenty_to_onehundred(number)
-		elsif
-			number.between?(100, 999)
+		elsif number.between?(100, 999)
 			one_hundred_to_one_thousand(number)
-		elsif
-			number.between?(999, 10000)
+		elsif number.between?(999, 10000)
 			one_thousand_to_ten_thousand(number)
 		elsif number.between?(9999, 100000)
 			one_thousand_to_one_hundred_thousand(number)
@@ -130,10 +128,25 @@ class Yo
 	end
 
 	def one_thousand_to_one_hundred_thousand(number)
+		# 99999
 		number_of_thousands = rounded(number)
+		# 99
 		remainder = number_of_thousands * 1000
+		# 99000
 		hundreds_number = number - remainder
-		twenty_to_onehundred(number_of_thousands) + ' ' + 'thousand' + ' ' + one_hundred_to_one_thousand(hundreds_number) 
+		# 999
+
+		if hundreds_number == 0
+			NUMBER_TO_WORDS[number_of_thousands] + ' ' + 'thousand'
+		elsif hundreds_number.between?(0, 20) 
+			NUMBER_TO_WORDS[number_of_thousands] + ' ' + 'thousand' + ' ' + 'and' + ' ' + NUMBER_TO_WORDS[hundreds_number]
+		elsif hundreds_number.between?(21, 100) 
+			NUMBER_TO_WORDS[number_of_thousands] + ' ' + 'thousand' + ' ' + 'and' + ' ' + twenty_to_onehundred(hundreds_number)
+		else
+			twenty_to_onehundred(number_of_thousands) + ' ' + 'thousand' + ' ' + one_hundred_to_one_thousand(hundreds_number) 
+			
+			# NUMBER_TO_WORDS[number_of_thousands] + ' ' + 'thousand' + ' ' + one_hundred_to_one_thousand(hundreds_number)
+		end
 	end
 
 	def one_hundred_thousand_to_one_million(number)
@@ -183,5 +196,8 @@ class Yo
 			differenceword = NUMBER_TO_WORDS[difference]
 		end
 	end
+
+	puts Yo.new.rounded(10001)
+	# one_thousand_to_one_hundred_thousand(10001)
 
 end
