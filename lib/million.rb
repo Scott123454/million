@@ -74,9 +74,9 @@ class Yo
 			number.between?(100, 999)
 			one_hundred_to_one_thousand(number)
 		elsif
-			number.between?(999, 9999)
+			number.between?(999, 10000)
 			one_thousand_to_ten_thousand(number)
-		elsif number.between?(10000, 100000)
+		elsif number.between?(9999, 100000)
 			one_thousand_to_one_hundred_thousand(number)
 		elsif number.between?(100000, 1000000)
 			one_hundred_thousand_to_one_million(number)
