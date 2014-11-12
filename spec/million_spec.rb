@@ -93,9 +93,15 @@ describe 'Print words one to one million' do
 		expect(Yo.new.returns_word_number(10001)).to eq 'ten thousand and one'
 	end
 
-	it 'prints "one hundred thousand" for 100000' do
-		expect(Yo.new.returns_word_number(100000)).to eq 'one hundred thousand'
+	it 'prints "seventeen thousand one hundred and ten" for 17110' do
+		expect(Yo.new.returns_word_number(17110)).to eq 'seventeen thousand one hundred and ten'
 	end
+
+
+	it 'prints "thirty thousand and one" for 30000' do
+		expect(Yo.new.returns_word_number(30000)).to eq 'thirty thousand'
+	end
+
 
 	it 'prints "ninety nine thousand nine hundred and ninety nine" for 99999' do
 		expect(Yo.new.returns_word_number(99999)).to eq 'ninety nine thousand nine hundred and ninety nine'
@@ -107,6 +113,10 @@ describe 'Print words one to one million' do
 
 	it 'prints "eighty seven thousand five hundred and sixty nine" for 87569' do
 		expect(Yo.new.returns_word_number(87569)).to eq 'eighty seven thousand five hundred and sixty nine'
+	end
+
+	it 'prints "one hundred thousand" for 100000' do
+		expect(Yo.new.returns_word_number(100000)).to eq 'one hundred thousand'
 	end
 
 	it 'prints "nine hundred and ninety nine thousand nine hundred and ninety nine" for 999999' do
